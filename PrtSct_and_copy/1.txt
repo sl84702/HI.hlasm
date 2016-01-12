@@ -1,0 +1,43 @@
+   File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help
+ ───────────────────────────────────────────────────────────────────────────────
+ EDIT       FAGUS.DEV.ASM(HI) - 01.00                           Member HI saved
+ Command ===>                                                  Scroll ===> CSR
+ ****** ***************************** Top of Data ******************************
+ 000100             START 0
+ 000200 HELLO     CSECT
+ 000300           BALR 11,0
+ 000400           USING *,11
+ 000500 * PRINT ARRAY TO DISPLAY
+ 000510           WTO 'INPUT ARRAY'
+ 000600 PRTODIS   XR  8,8 R8 - CMECHENIE
+ 000700           LA  9,INARR R9 - BASE, NACHALO MASSIVA
+ 000800           MP  I,ZERO CLEANING I
+ 001000 OUTMASS   CP  I,LEN CRAVNIVAEM I AND DLINY MASSIVA
+ 001100           BH  ENDOUT IF I>LEN GOTO ENDOUT
+ 001200           LA  10,0(8,9) V R10 - ADRESS TEKYCHEGO ELEMENTA
+ 001300           MVC OUTNUM,0(10) ZNACHENIE, CHRON PO ADRESY V R10 - V OUTNUM
+ 001400           UNPK OUTNUM,OUTNUM
+ 001500           OC  OUTNUM,MASK OUTNUM || MASK, DLY PRIVODA Z K EBCDIC
+ 001600           WTO TEXT=WTOT
+ 001700           A   8,NUMLEN YVELICHIVAEM SMECHENIE DLY SLED. ELEMENTA
+ 001800           AP  I,ONE I++
+ 001900           B   OUTMASS GOTO OUTMASS
+ 002000 ENDOUT    WTO '*********'
+ 002200           AP  STEPNOW,ONE ANTI INFINITE LOOP
+ 002300           CP  STEPNOW,STEPS
+ 002310           BH FEXCL
+ 002500 ******************
+ 002600 ******************
+ 002700 * SORT ARRAY
+ 002800 SORTARR  XR  8,8 R9 - SMECHENIE
+ 002900          LA  9,INARR R9 - BASE, NACHALO MASSIVA
+ 003100          MP  I,ZERO CLEANING I
+ 003110          WTO 'SORTED ARRAY'
+ 003200 SORTST1  MP  J,ZERO CLEANING J
+ 003300 * FOR (I=0; I<LEN; I++)
+ 003400          XR  8,8
+ 003500          LA  10,0(8,9)
+ 003600          CP  I,LEN I <=LEN ?
+ 003700          BE  ENDSORT  IF I>=LEN GOTO ENDSORT
+ 003800          AP  I,ONE I++
+   *DSLIST  -DSLIST  ISFPCU41
