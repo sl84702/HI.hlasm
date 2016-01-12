@@ -1,0 +1,12 @@
+Name	      DS_type	RECFM	LRECL	BLKSZ	  DIR_BLOCKS
+DEV.ASM	    LIB	    FB	  80	  3200	  20
+DEV.METALC	LIB	    VB	  144	  2880	  20
+DEV.C	      LIB	    VB	  259	  27998	  20
+DEV.OBJ	    LIB	    FB	  80	  3040	  20
+DEV.LOADLIB	PDS	    U	    0	    27998	  20
+DEV.JOBS	  LIB	    FB	  80	  3200	  20
+The same but with PROD					
+Exel file sheets:					
+ASM info					
+zOS info					
+Other useful info					
