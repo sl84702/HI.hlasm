@@ -1,0 +1,43 @@
+   File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help
+ ───────────────────────────────────────────────────────────────────────────────
+ VIEW       FAGUS.DEV.JOBS(HIJ) - 01.00                     Columns 00001 00072
+ Command ===>                                                  Scroll ===> CSR
+ 003600 //SYSPRINT DD   SYSOUT=*
+ 003700 //
+ ****** **************************** Bottom of Data ****************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   -DSLIST  *DSLIST  ISFPCU41
