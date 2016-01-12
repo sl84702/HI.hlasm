@@ -1,0 +1,43 @@
+   File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help
+ ───────────────────────────────────────────────────────────────────────────────
+ EDIT       FAGUS.DEV.ASM(HI) - 01.00                       Columns 00001 00072
+ Command ===>                                                  Scroll ===> CSR
+ 011800          AP  I,ONE
+ 011900          LA  10,0(8,9)
+ 012000          LA  5,0(7,6)
+ 012100          MVC AI,0(10)
+ 012200          MVC AIP1,4(10)
+ 012300          MVC SWAP,0(10)
+ 012400          A   8,NUMLEN
+ 012500          A   7,NUMLEN
+ 012600          AP  SWAP,ONE
+ 012700          CP  SWAP,AIP1
+ 012800          BNE MSEQST1
+ 012900          MVC 0(4,5),ZERO2 A[I]:=0
+ 013000          MVC 4(4,5),ZERO2 A[I+1]:=0
+ 013300          B MSEQST1
+ 013400 ENDMSEQ  B PRTSEQ
+ 013500 *******************
+ 013600 * PRINT SEQUENCE
+ 013700 PSEQ     WTO '-------'
+ 013800          XR 8,8
+ 013900          XR 7,7
+ 014000          LA 6,EXCLARR
+ 014100          LA 9,SEQARR
+ 014200          MP I,ZERO
+ 014300          MP J,ZERO
+ 014400 PSEQST1  CP I,NEWLEN
+ 014500          BH ENDPSEQ
+ 014600          LA 10,0(8,9)
+ 014700          LA 5,0(7,6)
+ 014800          MVC AI,0(10)
+ 014900          MVC AIP1,4(10)
+ 015000          A  8,NUMLEN
+ 015100          A  7,NUMLEN
+ 015200          AP I,ONE
+ 015300          CP AI,ZERO
+ 015400          BNE  PSEQST1
+ 015500          MVC OUTNUM,0(5)
+ 015600          UNPK OUTNUM,OUTNUM
+ 015700          OC  OUTNUM,MASK
+   *DSLIST  -DSLIST  ISFPCU41
