@@ -1,0 +1,43 @@
+   File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help
+ ───────────────────────────────────────────────────────────────────────────────
+ EDIT       FAGUS.DEV.ASM(HI) - 01.00                       Columns 00001 00072
+ Command ===>                                                  Scroll ===> CSR
+ 019600           DC PL4'5'
+ 019700           DC PL4'44'
+ 019800 **********************
+ 019900 EXCLARR   DS 12PL4
+ 020000 *********************************
+ 020100 SEQARR    DC 12PL4'1'
+ 020200 *********************
+ 020300 MASK     DC BL4'11110000' MASKA ZONE/EBCDIC
+ 020400 ONE      DC PL4'1'
+ 020500 NUMLEN   DC XL4'4' DLINA SLOVA V BAYTAX
+ 020600 ZERO     DC PL2'0'
+ 020700 ZERO2    DC PL4'0'
+ 020800 LEN      DC PL4'11'  LEN ARRAYA-1
+ 020900 NEWLEN   DS PL4
+ 021000 I        DC PL4'0'
+ 021100 J        DC PL4'0'
+ 021200 STEPS    DC PL4'1'
+ 021300 STEPNOW  DC PL4'0'
+ 021400 AI       DS PL4
+ 021500 AIP1     DS PL4
+ 021800 SWAP     DS PL4
+ 021900 **********************
+ 022000 END      BR 14
+ 022100          END
+ ****** **************************** Bottom of Data ****************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+   *DSLIST  -DSLIST  ISFPCU41
