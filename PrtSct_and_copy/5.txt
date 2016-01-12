@@ -1,0 +1,43 @@
+   File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help
+ ───────────────────────────────────────────────────────────────────────────────
+ EDIT       FAGUS.DEV.ASM(HI) - 01.00                       Columns 00001 00072
+ Command ===>                                                  Scroll ===> CSR
+ 015800          WTO TEXT=WTOT
+ 015900          CP AIP1,ONE
+ 016000          BNE PSEQST1 RASGRANICHENIE SEQUENCE
+ 016100          WTO '-------'
+ 016200          B PSEQST1
+ 016300 ENDPSEQ  B END
+ 016400 ******************
+ 016500 * PRINT ARRAY\MASK
+ 016600 PRTSEQ   XR  8,8
+ 016700          LA  9,SEQARR
+ 016800          MP  I,ZERO
+ 016900          WTO 'SEQARR'
+ 017000 OUTSEQ   CP  I,NEWLEN
+ 017100          BH  ENDOUSEQ
+ 017200          LA  10,0(8,9)
+ 017300          MVC OUTNUM,0(10)
+ 017400          UNPK OUTNUM,OUTNUM
+ 017500          OC  OUTNUM,MASK
+ 017600          WTO TEXT=WTOT
+ 017700          A   8,NUMLEN
+ 017800          AP  I,ONE
+ 017900          B   OUTSEQ
+ 018000 ENDOUSEQ WTO '**************'
+ 018100          B   PSEQ
+ 018200 **********************
+ 018300 *INPUT ARRAY
+ 018400 WTOT     DC H'4'
+ 018500 OUTNUM   DS ZL4
+ 018600 INARR    DC PL4'1'
+ 018700           DC PL4'8'
+ 018800           DC PL4'4'
+ 018900           DC PL4'3'
+ 019000           DC PL4'44'
+ 019100           DC PL4'91'
+ 019200           DC PL4'84'
+ 019300           DC PL4'43'
+ 019400           DC PL4'98'
+ 019500           DC PL4'8'
+   *DSLIST  -DSLIST  ISFPCU41
