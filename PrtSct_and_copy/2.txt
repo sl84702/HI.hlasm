@@ -1,0 +1,43 @@
+   File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help
+ ───────────────────────────────────────────────────────────────────────────────
+ EDIT       FAGUS.DEV.ASM(HI) - 01.00                       Columns 00001 00072
+ Command ===>                                                  Scroll ===> CSR
+ 003900          B   SORTST2
+ 004000 * FOR (J=I+1; J<LEN; J++)
+ 004100 SORTST2  CP  J,LEN J <=LEN ?
+ 004200          BE  SORTST1 IF J>=LEN GOTO SORTST1
+ 004300          AP  J,ONE J++
+ 004400 SORTST3  MVC AI,0(10) AJ - FIRS ELEMENT
+ 004500          MVC AIP1,4(10) AJP1=AJ+1
+ 004600          A   8,NUMLEN
+ 004700          LA  10,0(8,9)
+ 004800 * IF A[J]>A[J+1]
+ 004900          CP  AI,AIP1 IF A[J]<A[J+1] ?
+ 005000          BL  SORTST2 GOTO SORTST2
+ 005100          S   8,NUMLEN
+ 005200          LA  10,0(8,9)
+ 005300          MVC SWAP,AI SWAP=A[J]
+ 005400          MVC AI,AIP1 A[J+1]=AJ
+ 005500          MVC AIP1,SWAP A[J+1]=SWAP
+ 005600          MVC 0(4,10),AI
+ 005700          A   8,NUMLEN
+ 005800          LA  10,0(8,9)
+ 005900          MVC 0(4,10),AIP1
+ 006000          B   SORTST2
+ 006100 ENDSORT   B PRTODIS  PRINT SORTED ARRAY
+ 006200 *********************
+ 006300 *ISKLYCHAEM POVTORENIYA
+ 006400 FEXCL    XR 8,8
+ 006500          XR 7,7
+ 006600          MVC NEWLEN,LEN
+ 006700          LA 6,EXCLARR
+ 006800          LA 9,INARR
+ 007000          MP I,ZERO
+ 007100 FEXCLST1 LA 10,0(8,9)
+ 007200          CP I,LEN
+ 007300          BE FEND
+ 007400          AP I,ONE
+ 007500          MVC AI,0(10)
+ 007600          MVC AIP1,4(10)
+ 007700          A 8,NUMLEN
+   *DSLIST  -DSLIST  ISFPCU41
