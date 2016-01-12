@@ -1,0 +1,43 @@
+   File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help
+ ───────────────────────────────────────────────────────────────────────────────
+ EDIT       FAGUS.DEV.ASM(HI) - 01.00                       Columns 00001 00072
+ Command ===>                                                  Scroll ===> CSR
+ 007800          CP AI,AIP1
+ 007900          BNE FPEND
+ 008000          SP  NEWLEN,ONE
+ 008100          B FEXCLST1
+ 008200 FPEND    LA 5,0(7,6)
+ 008300          A  7,NUMLEN
+ 008400          MVC 0(4,5),AI
+ 008500          B FEXCLST1
+ 008600 FEND     LA  5,0(7,6)
+ 008700          MVC 0(4,5),AIP1
+ 008800          B   PRTEXCL
+ 009000 **********************
+ 009100 * PRINT EXCL ARRAY TO DISPLAY
+ 009200 PRTEXCL  XR  8,8
+ 009300          LA  9,EXCLARR
+ 009400          MP  I,ZERO
+ 009500          WTO 'EXCL ARRAY'
+ 009600 OUTEXCLM CP  I,NEWLEN
+ 009700          BH  ENDOUTEX
+ 009800          LA  10,0(8,9)
+ 009900          MVC OUTNUM,0(10)
+ 010000          UNPK OUTNUM,OUTNUM
+ 010100          OC  OUTNUM,MASK
+ 010200          WTO TEXT=WTOT
+ 010300          A   8,NUMLEN
+ 010400          AP  I,ONE
+ 010500          B   OUTEXCLM
+ 010600 ENDOUTEX WTO '**************'
+ 010700          B MSEQ
+ 010800 **********************
+ 010900 *FORMIRUEM VSPOMOGATELNY MASSIV\MASKY. ZERO - POSSLEDOVATELNOST
+ 011000 MSEQ     XR  8,8
+ 011100          XR  7,7
+ 011200          LA  9,EXCLARR
+ 011300          LA  6,SEQARR
+ 011400          MP I,ZERO
+ 011600 MSEQST1  CP  I,NEWLEN
+ 011700          BE  ENDMSEQ
+   *DSLIST  -DSLIST  ISFPCU41
