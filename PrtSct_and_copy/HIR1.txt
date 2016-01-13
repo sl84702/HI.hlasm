@@ -1,0 +1,43 @@
+   File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help
+ ───────────────────────────────────────────────────────────────────────────────
+ VIEW       FAGUS.DEV.JOBS(HIR) - 01.00                     Columns 00001 00072
+ Command ===>                                                  Scroll ===> CSR
+ ****** ***************************** Top of Data ******************************
+ 000100 //LDSRUN JOB (EMC),'ASMBUILD',CLASS=A,MSGCLASS=X,
+ 000200 //           NOTIFY=&SYSUID,REGION=0M,MSGLEVEL=(1,1)
+ 000300 //RUNPROG EXEC PGM=HI
+ 000400 //STEPLIB DD DSN=FAGUS.DEV.LOADLIB,DISP=SHR
+ 000500 //SYSPRINT DD SYSOUT=*
+ 000600 //SNAPDD DD SYSOUT=*
+ 000700 //
+ ****** **************************** Bottom of Data ****************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   -DSLIST  *DSLIST  ISFPCU41
