@@ -1,6 +1,6 @@
    File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help
  ───────────────────────────────────────────────────────────────────────────────
- EDIT       FAGUS.DEV.ASM(HI) - 01.00                           Member HI saved
+ EDIT       FAGUS.DEV.ASM(HI) - 01.01                       Columns 00001 00072
  Command ===>                                                  Scroll ===> CSR
  ****** ***************************** Top of Data ******************************
  000100             START 0
@@ -20,10 +20,13 @@
  001500           OC  OUTNUM,MASK OUTNUM || MASK, DLY PRIVODA Z K EBCDIC
  001600           WTO TEXT=WTOT
  001700           A   8,NUMLEN YVELICHIVAEM SMECHENIE DLY SLED. ELEMENTA
+ 001710           BO  OVERFLOW
  001800           AP  I,ONE I++
+ 001810           BO  OVERFLOW
  001900           B   OUTMASS GOTO OUTMASS
  002000 ENDOUT    WTO '*********'
  002200           AP  STEPNOW,ONE ANTI INFINITE LOOP
+ 002210           BO  OVERFLOW
  002300           CP  STEPNOW,STEPS
  002310           BH FEXCL
  002500 ******************
@@ -37,7 +40,4 @@
  003300 * FOR (I=0; I<LEN; I++)
  003400          XR  8,8
  003500          LA  10,0(8,9)
- 003600          CP  I,LEN I <=LEN ?
- 003700          BE  ENDSORT  IF I>=LEN GOTO ENDSORT
- 003800          AP  I,ONE I++
-   *DSLIST  -DSLIST  ISFPCU41
+   -DSLIST  *DSLIST
