@@ -1,0 +1,43 @@
+   File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help
+ ───────────────────────────────────────────────────────────────────────────────
+ EDIT       FAGUS.DEV.ASM(HI) - 01.01                       Columns 00001 00072
+ Command ===>                                                  Scroll ===> CSR
+ 020900 NEWLEN   DS PL4
+ 021000 I        DC PL4'0'
+ 021100 J        DC PL4'0'
+ 021200 STEPS    DC PL4'1'
+ 021300 STEPNOW  DC PL4'0'
+ 021400 AI       DS PL4
+ 021500 AIP1     DS PL4
+ 021800 SWAP     DS PL4
+ 021900 **********************
+ 022000 END      BR 14
+ 022100          END
+ ****** **************************** Bottom of Data ****************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   -DSLIST  *DSLIST
