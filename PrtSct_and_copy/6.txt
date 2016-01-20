@@ -1,7 +1,32 @@
    File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help
  ───────────────────────────────────────────────────────────────────────────────
- EDIT       FAGUS.DEV.ASM(HI) - 01.00                       Columns 00001 00072
+ EDIT       FAGUS.DEV.ASM(HI) - 01.01                       Columns 00001 00072
  Command ===>                                                  Scroll ===> CSR
+ 017600          WTO TEXT=WTOT
+ 017700          A   8,NUMLEN
+ 017710          BO  OVERFLOW
+ 017800          AP  I,ONE
+ 017810          BO  OVERFLOW
+ 017900          B   OUTSEQ
+ 018000 ENDOUSEQ WTO '**************'
+ 018100          B   PSEQ
+ 018110 **********************
+ 018120 OVERFLOW WTO 'OVERFLOW'
+ 018130          B END
+ 018200 **********************
+ 018300 *INPUT ARRAY
+ 018400 WTOT     DC H'4'
+ 018500 OUTNUM   DS ZL4
+ 018600 INARR    DC PL4'1'
+ 018700           DC PL4'8'
+ 018800           DC PL4'4'
+ 018900           DC PL4'3'
+ 019000           DC PL4'44'
+ 019100           DC PL4'91'
+ 019200           DC PL4'45'
+ 019300           DC PL4'83'
+ 019400           DC PL4'98'
+ 019500           DC PL4'8'
  019600           DC PL4'5'
  019700           DC PL4'44'
  019800 **********************
@@ -15,29 +40,4 @@
  020600 ZERO     DC PL2'0'
  020700 ZERO2    DC PL4'0'
  020800 LEN      DC PL4'11'  LEN ARRAYA-1
- 020900 NEWLEN   DS PL4
- 021000 I        DC PL4'0'
- 021100 J        DC PL4'0'
- 021200 STEPS    DC PL4'1'
- 021300 STEPNOW  DC PL4'0'
- 021400 AI       DS PL4
- 021500 AIP1     DS PL4
- 021800 SWAP     DS PL4
- 021900 **********************
- 022000 END      BR 14
- 022100          END
- ****** **************************** Bottom of Data ****************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-   *DSLIST  -DSLIST  ISFPCU41
+   -DSLIST  *DSLIST
