@@ -1,7 +1,27 @@
    File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help
  ───────────────────────────────────────────────────────────────────────────────
- EDIT       FAGUS.DEV.ASM(HI) - 01.00                       Columns 00001 00072
+ EDIT       FAGUS.DEV.ASM(HI) - 01.01                       Columns 00001 00072
  Command ===>                                                  Scroll ===> CSR
+ 014100          LA 9,SEQARR
+ 014200          MP I,ZERO
+ 014300          MP J,ZERO
+ 014400 PSEQST1  CP I,NEWLEN
+ 014500          BH ENDPSEQ
+ 014600          LA 10,0(8,9)
+ 014700          LA 5,0(7,6)
+ 014800          MVC AI,0(10)
+ 014900          MVC AIP1,4(10)
+ 015000          A  8,NUMLEN
+ 015010          BO  OVERFLOW
+ 015100          A  7,NUMLEN
+ 015110          BO  OVERFLOW
+ 015200          AP I,ONE
+ 015210          BO  OVERFLOW
+ 015300          CP AI,ZERO
+ 015400          BNE  PSEQST1
+ 015500          MVC OUTNUM,0(5)
+ 015600          UNPK OUTNUM,OUTNUM
+ 015700          OC  OUTNUM,MASK
  015800          WTO TEXT=WTOT
  015900          CP AIP1,ONE
  016000          BNE PSEQST1 RASGRANICHENIE SEQUENCE
@@ -20,24 +40,4 @@
  017300          MVC OUTNUM,0(10)
  017400          UNPK OUTNUM,OUTNUM
  017500          OC  OUTNUM,MASK
- 017600          WTO TEXT=WTOT
- 017700          A   8,NUMLEN
- 017800          AP  I,ONE
- 017900          B   OUTSEQ
- 018000 ENDOUSEQ WTO '**************'
- 018100          B   PSEQ
- 018200 **********************
- 018300 *INPUT ARRAY
- 018400 WTOT     DC H'4'
- 018500 OUTNUM   DS ZL4
- 018600 INARR    DC PL4'1'
- 018700           DC PL4'8'
- 018800           DC PL4'4'
- 018900           DC PL4'3'
- 019000           DC PL4'44'
- 019100           DC PL4'91'
- 019200           DC PL4'84'
- 019300           DC PL4'43'
- 019400           DC PL4'98'
- 019500           DC PL4'8'
-   *DSLIST  -DSLIST  ISFPCU41
+   -DSLIST  *DSLIST
