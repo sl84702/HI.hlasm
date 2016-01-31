@@ -2,35 +2,23 @@
  HELLO     CSECT 
            BALR 11,0 
            USING *,11 
- * PRINT ARRAY TO DISPLAY 
+           EXTRN PRTODIS 
+ ********************************* 
            WTO 'INPUT ARRAY' 
- PRTODIS   XR  8,8 R8 - CMECHENIE 
-           LA  9,INARR R9 - BASE, NACHALO MASSIVA 
-           MP  I,ZERO CLEANING I 
- OUTMASS   CP  I,LEN CRAVNIVAEM I AND DLINY MASSIVA 
-           BH  ENDOUT IF I>LEN GOTO ENDOUT 
-           LA  10,0(8,9) V R10 - ADRESS TEKYCHEGO ELEMENTA 
-           MVC OUTNUM,0(10) ZNACHENIE, CHRON PO ADRESY V R10 - V OUTNUM 
-           UNPK OUTNUM,OUTNUM 
-           OC  OUTNUM,MASK OUTNUM || MASK, DLY PRIVODA Z K EBCDIC 
-           WTO TEXT=WTOT 
-           A   8,NUMLEN YVELICHIVAEM SMECHENIE DLY SLED. ELEMENTA 
-           BO  OVERFLOW 
-           AP  I,ONE I++ 
-           BO  OVERFLOW 
-           B   OUTMASS GOTO OUTMASS 
- ENDOUT    WTO '*********' 
-           AP  STEPNOW,ONE ANTI INFINITE LOOP 
-           BO  OVERFLOW 
-           CP  STEPNOW,STEPS 
-           BH FEXCL 
- ****************** 
+ ********************************* 
+           LA  2,INARR 
+           ST  2,PARAMLST 
+           LA  13,SAVEA 
+           LA  1,PARAMLST 
+           L   15,PRTADDR 
+           BALR 14,15 
+ ********************************* 
+           B   SORTARR 
  ****************** 
  * SORT ARRAY 
  SORTARR  XR  8,8 R9 - SMECHENIE 
           LA  9,INARR R9 - BASE, NACHALO MASSIVA 
           MP  I,ZERO CLEANING I 
-          WTO 'SORTED ARRAY' 
  SORTST1  MP  J,ZERO CLEANING J 
  * FOR (I=0; I<LEN; I++) 
           XR  8,8 
@@ -65,7 +53,14 @@
           LA  10,0(8,9) 
           MVC 0(4,10),AIP1 
           B   SORTST2 
- ENDSORT   B PRTODIS  PRINT SORTED ARRAY 
+ ENDSORT  WTO 'SORTED ARRAY' PRINT SORTED ARRAY 
+ ******************************* 
+            LA  13,SAVEA 
+            LA  1,PARAMLST 
+            L   15,PRTADDR 
+            BALR 14,15 
+ ****************************** 
+          B FEXCL 
  ********************* 
  *ISKLYCHAEM POVTORENIYA 
  FEXCL    XR 8,8 
@@ -77,7 +72,7 @@
  FEXCLST1 LA 10,0(8,9) 
           CP I,LEN 
           BE FEND 
-          AP I,ONE 
+          AP I,ONE
           BO  OVERFLOW 
           MVC AI,0(10) 
           MVC AIP1,4(10) 
@@ -95,26 +90,17 @@
           B FEXCLST1 
  FEND     LA  5,0(7,6) 
           MVC 0(4,5),AIP1 
-          B   PRTEXCL 
- ********************** 
+ *********************** 
+          LA  2,NEWLEN 
+          ST  2,PARAMLST+4 
+          LA  2,EXCLARR 
+          ST  2,PARAMLST 
  * PRINT EXCL ARRAY TO DISPLAY 
- PRTEXCL  XR  8,8 
-          LA  9,EXCLARR 
-          MP  I,ZERO 
           WTO 'EXCL ARRAY' 
- OUTEXCLM CP  I,NEWLEN 
-          BH  ENDOUTEX 
-          LA  10,0(8,9) 
-          MVC OUTNUM,0(10) 
-          UNPK OUTNUM,OUTNUM 
-          OC  OUTNUM,MASK 
-          WTO TEXT=WTOT 
-          A   8,NUMLEN 
-          BO  OVERFLOW 
-          AP  I,ONE 
-          BO  OVERFLOW 
-          B   OUTEXCLM 
- ENDOUTEX WTO '**************' 
+             LA  13,SAVEA 
+             LA  1,PARAMLST 
+             L   15,PRTADDR 
+             BALR 14,15 
           B MSEQ 
  ********************** 
  *FORMIRUEM VSPOMOGATELNY MASSIV\MASKY. ZERO - POSSLEDOVATELNOST 
@@ -177,23 +163,16 @@
  ENDPSEQ  B END 
  ****************** 
  * PRINT ARRAY\MASK 
- PRTSEQ   XR  8,8 
-          LA  9,SEQARR 
-          MP  I,ZERO 
-          WTO 'SEQARR' 
- OUTSEQ   CP  I,NEWLEN 
-          BH  ENDOUSEQ 
-          LA  10,0(8,9) 
-          MVC OUTNUM,0(10) 
-          UNPK OUTNUM,OUTNUM 
-          OC  OUTNUM,MASK 
-          WTO TEXT=WTOT 
-          A   8,NUMLEN 
-          BO  OVERFLOW 
-          AP  I,ONE 
-          BO  OVERFLOW 
-          B   OUTSEQ 
- ENDOUSEQ WTO '**************' 
+ PRTSEQ   WTO 'SEQARR' 
+ *********************** 
+           LA  2,NEWLEN 
+           ST  2,PARAMLST+4 
+           LA  2,SEQARR 
+           ST  2,PARAMLST 
+             LA  13,SAVEA 
+             LA  1,PARAMLST 
+             L   15,PRTADDR 
+             BALR 14,15 
           B   PSEQ 
  ********************** 
  OVERFLOW WTO 'OVERFLOW' 
@@ -202,30 +181,6 @@
  *INPUT ARRAY 
  WTOT     DC H'4' 
  OUTNUM   DS ZL4 
- INARR    DC PL4'1' 
-           DC PL4'8' 
-           DC PL4'4' 
-           DC PL4'3' 
-           DC PL4'44' 
-           DC PL4'91' 
-           DC PL4'45' 
-           DC PL4'83' 
-           DC PL4'98' 
-           DC PL4'8' 
-           DC PL4'5' 
-           DC PL4'44' 
- ********************** 
- EXCLARR   DS 12PL4 
- ********************************* 
- SEQARR    DC 12PL4'1' 
- ********************* 
- MASK     DC BL4'11110000' MASKA ZONE/EBCDIC 
- ONE      DC PL4'1' 
- NUMLEN   DC XL4'4' DLINA SLOVA V BAYTAX 
- ZERO     DC PL2'0' 
- ZERO2    DC PL4'0' 
- LEN      DC PL4'11'  LEN ARRAYA-1 
- OUTNUM   DS ZL4                        
  INARR    DC PL4'1' 
            DC PL4'8' 
            DC PL4'4' 
@@ -258,5 +213,65 @@
  AIP1     DS PL4 
  SWAP     DS PL4 
  ********************** 
+ PARAMLST DC A(INARR) 
+          DC A(LEN) 
+ ********************* 
+ SAVEA    DS 18F 
+ ********************** 
+ PRTADDR  DC A(PRTODIS) 
+ ********************** 
  END      BR 14 
           END 
+ ********************* 
+ ************************* 
+ ************************* 
+ SUBPGM   CSECT 
+          ENTRY PRTODIS 
+ PRTODIS  STM 14,12,12(13) 
+          BALR 11,0 
+          USING *,11 
+          ST 13,SAVEB+4 
+          LA 15,SAVEB 
+          ST 15,8(13) 
+ ********************** 
+           L  9,0(1) (INARR) 
+           L  2,4(1) (LEN) 
+           L  6,0(2) LEN 
+ ********************** 
+            XR  8,8 R8 - CMECHENIE 
+            ST  6,LEN 
+            MP  I,ZERO CLEANING I 
+ OUTMASS    CP  I,LEN CRAVNIVAEM I AND DLINY MASSIVA 
+            BH  ENDOUT IF I>LEN GOTO ENDOUT 
+            LA  10,0(8,9) V R10 - ADRESS TEKYCHEGO ELEMENTA 
+            MVC OUTNUM,0(10) ZNACHENIE, CHRON PO ADRESY V R10 - V OUTNUM
+            UNPK OUTNUM,OUTNUM 
+            OC  OUTNUM,MASK OUTNUM || MASK, DLY PRIVODA Z K EBCDIC 
+            WTO TEXT=WTOT 
+            A   8,NUMLEN YVELICHIVAEM SMECHENIE DLY SLED. ELEMENTA 
+            BO  OVERFLOW 
+            AP  I,ONE I++ 
+            BO  OVERFLOW 
+            B   OUTMASS GOTO OUTMASS 
+ ENDOUT    WTO '*********' 
+            B   ENDP 
+ ********************** 
+ OVERFLOW  WTO 'OVERFLOW' 
+           B    ENDP 
+ ********************** 
+ ENDP      LM 14,12,12(13) 
+           BR 14 
+ ********************* 
+ SAVEB    DS 18F 
+ ********************* 
+ WTOT     DC H'4' 
+ OUTNUM   DS ZL4 
+ ******************** 
+ MASK     DC BL4'11110000' MASKA ZONE/EBCDIC 
+ ONE      DC PL4'1' 
+ NUMLEN   DC XL4'4' DLINA SLOVA V BAYTAX 
+ ZERO     DC PL2'0' 
+ LEN      DC PL4'11'  LEN ARRAYA-1 
+ I        DC PL4'0' 
+ ******************** 
+           END 
