@@ -2,20 +2,6 @@
  ───────────────────────────────────────────────────────────────────────────────
  EDIT       FAGUS.DEV.ASM(HI) - 01.01                       Columns 00001 00072
  Command ===>                                                  Scroll ===> CSR
- 014100          LA 9,SEQARR
- 014200          MP I,ZERO
- 014300          MP J,ZERO
- 014400 PSEQST1  CP I,NEWLEN
- 014500          BH ENDPSEQ
- 014600          LA 10,0(8,9)
- 014700          LA 5,0(7,6)
- 014800          MVC AI,0(10)
- 014900          MVC AIP1,4(10)
- 015000          A  8,NUMLEN
- 015010          BO  OVERFLOW
- 015100          A  7,NUMLEN
- 015110          BO  OVERFLOW
- 015200          AP I,ONE
  015210          BO  OVERFLOW
  015300          CP AI,ZERO
  015400          BNE  PSEQST1
@@ -30,14 +16,28 @@
  016300 ENDPSEQ  B END
  016400 ******************
  016500 * PRINT ARRAY\MASK
- 016600 PRTSEQ   XR  8,8
- 016700          LA  9,SEQARR
- 016800          MP  I,ZERO
- 016900          WTO 'SEQARR'
- 017000 OUTSEQ   CP  I,NEWLEN
- 017100          BH  ENDOUSEQ
- 017200          LA  10,0(8,9)
- 017300          MVC OUTNUM,0(10)
- 017400          UNPK OUTNUM,OUTNUM
- 017500          OC  OUTNUM,MASK
+ 016900 PRTSEQ   WTO 'SEQARR'
+ 017910 ***********************
+ 017920           LA  2,NEWLEN
+ 017930           ST  2,PARAMLST+4
+ 017940           LA  2,SEQARR
+ 017950           ST  2,PARAMLST
+ 018010             LA  13,SAVEA
+ 018020             LA  1,PARAMLST
+ 018030             L   15,PRTADDR
+ 018040             BALR 14,15
+ 018100          B   PSEQ
+ 018110 **********************
+ 018120 OVERFLOW WTO 'OVERFLOW'
+ 018130          B END
+ 018200 **********************
+ 018300 *INPUT ARRAY
+ 018400 WTOT     DC H'4'
+ 018500 OUTNUM   DS ZL4
+ 018600 INARR    DC PL4'1'
+ 018700           DC PL4'8'
+ 018800           DC PL4'4'
+ 018900           DC PL4'3'
+ 019000           DC PL4'44'
+ 019100           DC PL4'91'
    -DSLIST  *DSLIST
