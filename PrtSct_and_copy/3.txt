@@ -2,11 +2,6 @@
  ───────────────────────────────────────────────────────────────────────────────
  EDIT       FAGUS.DEV.ASM(HI) - 01.01                       Columns 00001 00072
  Command ===>                                                  Scroll ===> CSR
- 007000          MP I,ZERO
- 007100 FEXCLST1 LA 10,0(8,9)
- 007200          CP I,LEN
- 007300          BE FEND
- 007400          AP I,ONE
  007410          BO  OVERFLOW
  007500          MVC AI,0(10)
  007600          MVC AIP1,4(10)
@@ -24,20 +19,25 @@
  008500          B FEXCLST1
  008600 FEND     LA  5,0(7,6)
  008700          MVC 0(4,5),AIP1
- 008800          B   PRTEXCL
- 009000 **********************
+ 008701 ***********************
+ 008702          LA  2,NEWLEN
+ 008703          ST  2,PARAMLST+4
+ 008720          LA  2,EXCLARR
+ 008730          ST  2,PARAMLST
  009100 * PRINT EXCL ARRAY TO DISPLAY
- 009200 PRTEXCL  XR  8,8
- 009300          LA  9,EXCLARR
- 009400          MP  I,ZERO
  009500          WTO 'EXCL ARRAY'
- 009600 OUTEXCLM CP  I,NEWLEN
- 009700          BH  ENDOUTEX
- 009800          LA  10,0(8,9)
- 009900          MVC OUTNUM,0(10)
- 010000          UNPK OUTNUM,OUTNUM
- 010100          OC  OUTNUM,MASK
- 010200          WTO TEXT=WTOT
- 010300          A   8,NUMLEN
- 010310          BO  OVERFLOW
+ 010610             LA  13,SAVEA
+ 010620             LA  1,PARAMLST
+ 010630             L   15,PRTADDR
+ 010640             BALR 14,15
+ 010700          B MSEQ
+ 010800 **********************
+ 010900 *FORMIRUEM VSPOMOGATELNY MASSIV\MASKY. ZERO - POSSLEDOVATELNOST
+ 011000 MSEQ     XR  8,8
+ 011100          XR  7,7
+ 011200          LA  9,EXCLARR
+ 011300          LA  6,SEQARR
+ 011400          MP I,ZERO
+ 011600 MSEQST1  CP  I,NEWLEN
+ 011700          BE  ENDMSEQ
    -DSLIST  *DSLIST
