@@ -2,20 +2,6 @@
  ───────────────────────────────────────────────────────────────────────────────
  EDIT       FAGUS.DEV.ASM(HI) - 01.01                       Columns 00001 00072
  Command ===>                                                  Scroll ===> CSR
- 010400          AP  I,ONE
- 010410          BO  OVERFLOW
- 010500          B   OUTEXCLM
- 010600 ENDOUTEX WTO '**************'
- 010700          B MSEQ
- 010800 **********************
- 010900 *FORMIRUEM VSPOMOGATELNY MASSIV\MASKY. ZERO - POSSLEDOVATELNOST
- 011000 MSEQ     XR  8,8
- 011100          XR  7,7
- 011200          LA  9,EXCLARR
- 011300          LA  6,SEQARR
- 011400          MP I,ZERO
- 011600 MSEQST1  CP  I,NEWLEN
- 011700          BE  ENDMSEQ
  011800          AP  I,ONE
  011900          LA  10,0(8,9)
  012000          LA  5,0(7,6)
@@ -40,4 +26,18 @@
  013800          XR 8,8
  013900          XR 7,7
  014000          LA 6,EXCLARR
+ 014100          LA 9,SEQARR
+ 014200          MP I,ZERO
+ 014300          MP J,ZERO
+ 014400 PSEQST1  CP I,NEWLEN
+ 014500          BH ENDPSEQ
+ 014600          LA 10,0(8,9)
+ 014700          LA 5,0(7,6)
+ 014800          MVC AI,0(10)
+ 014900          MVC AIP1,4(10)
+ 015000          A  8,NUMLEN
+ 015010          BO  OVERFLOW
+ 015100          A  7,NUMLEN
+ 015110          BO  OVERFLOW
+ 015200          AP I,ONE
    -DSLIST  *DSLIST
