@@ -2,42 +2,42 @@
  ───────────────────────────────────────────────────────────────────────────────
  EDIT       FAGUS.DEV.ASM(HI) - 01.01                       Columns 00001 00072
  Command ===>                                                  Scroll ===> CSR
- 020900 NEWLEN   DS PL4
- 021000 I        DC PL4'0'
- 021100 J        DC PL4'0'
- 021200 STEPS    DC PL4'1'
- 021300 STEPNOW  DC PL4'0'
- 021400 AI       DS PL4
- 021500 AIP1     DS PL4
- 021800 SWAP     DS PL4
- 021900 **********************
- 022000 END      BR 14
- 022100          END
- ****** **************************** Bottom of Data ****************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   -DSLIST  *DSLIST
+ 022005 SUBPGM   CSECT
+ 022006          ENTRY PRTODIS
+ 022010 PRTODIS  STM 14,12,12(13)
+ 022020          BALR 11,0
+ 022030          USING *,11
+ 022040          ST 13,SAVEB+4
+ 022050          LA 15,SAVEB
+ 022060          ST 15,8(13)
+ 022070 **********************
+ 022080           L  9,0(1) (INARR)
+ 022090           L  2,4(1) (LEN)
+ 022092           L  6,0(2) LEN
+ 022094 **********************
+ 022095            XR  8,8 R8 - CMECHENIE
+ 022099            ST  6,LEN
+ 022100            MP  I,ZERO CLEANING I
+ 022101 OUTMASS    CP  I,LEN CRAVNIVAEM I AND DLINY MASSIVA
+ 022102            BH  ENDOUT IF I>LEN GOTO ENDOUT
+ 022104            LA  10,0(8,9) V R10 - ADRESS TEKYCHEGO ELEMENTA
+ 022105            MVC OUTNUM,0(10) ZNACHENIE, CHRON PO ADRESY V R10 - V OUTNUM
+ 022106            UNPK OUTNUM,OUTNUM
+ 022107            OC  OUTNUM,MASK OUTNUM || MASK, DLY PRIVODA Z K EBCDIC
+ 022108            WTO TEXT=WTOT
+ 022109            A   8,NUMLEN YVELICHIVAEM SMECHENIE DLY SLED. ELEMENTA
+ 022110            BO  OVERFLOW
+ 022111            AP  I,ONE I++
+ 022112            BO  OVERFLOW
+ 022113            B   OUTMASS GOTO OUTMASS
+ 022114 ENDOUT    WTO '*********'
+ 022115            B   ENDP
+ 022116 **********************
+ 022117 OVERFLOW  WTO 'OVERFLOW'
+ 022118           B    ENDP
+ 022119 **********************
+ 022120 ENDP      LM 14,12,12(13)
+ 022121           BR 14
+ 022122 *********************
+ 022123 SAVEB    DS 18F
+   -DSLIST  *DSLIST  ISFPCU41
