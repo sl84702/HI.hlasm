@@ -1,6 +1,6 @@
-   File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help
- ЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂ
- EDIT       FAGUS.DEV.ASM(HI) - 01.04                       Columns 00001 00072
+    File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help
+ ───────────────────────────────────────────────────────────────────────────────
+ EDIT       FAGUS.DEV.ASM(HI) - 01.01                       Columns 00001 00072
  Command ===>                                                  Scroll ===> CSR
  022124 *********************
  022125 WTOT     DC H'4'
