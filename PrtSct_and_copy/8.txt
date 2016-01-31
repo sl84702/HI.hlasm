@@ -1,0 +1,18 @@
+   File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help
+ ЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂЂ
+ EDIT       FAGUS.DEV.ASM(HI) - 01.04                       Columns 00001 00072
+ Command ===>                                                  Scroll ===> CSR
+ 022124 *********************
+ 022125 WTOT     DC H'4'
+ 022126 OUTNUM   DS ZL4
+ 022127 ********************
+ 022128 MASK     DC BL4'11110000' MASKA ZONE/EBCDIC
+ 022129 ONE      DC PL4'1'
+ 022130 NUMLEN   DC XL4'4' DLINA SLOVA V BAYTAX
+ 022131 ZERO     DC PL2'0'
+ 022132 LEN      DC PL4'11'  LEN ARRAYA-1
+ 022133 I        DC PL4'0'
+ 022138 ********************
+ 022140           END
+ ****** **************************** Bottom of Data ****************************
+
