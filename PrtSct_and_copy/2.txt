@@ -2,19 +2,7 @@
  ───────────────────────────────────────────────────────────────────────────────
  EDIT       FAGUS.DEV.ASM(HI) - 01.01                       Columns 00001 00072
  Command ===>                                                  Scroll ===> CSR
- 003600          CP  I,LEN I <=LEN ?
- 003700          BE  ENDSORT  IF I>=LEN GOTO ENDSORT
- 003800          AP  I,ONE I++
- 003810          BO  OVERFLOW
- 003900          B   SORTST2
- 004000 * FOR (J=I+1; J<LEN; J++)
- 004100 SORTST2  CP  J,LEN J <=LEN ?
- 004200          BE  SORTST1 IF J>=LEN GOTO SORTST1
- 004300          AP  J,ONE J++
- 004310          BO  OVERFLOW
- 004400 SORTST3  MVC AI,0(10) AJ - FIRS ELEMENT
- 004500          MVC AIP1,4(10) AJP1=AJ+1
- 004600          A   8,NUMLEN
+004600          A   8,NUMLEN
  004610          BO  OVERFLOW
  004700          LA  10,0(8,9)
  004800 * IF A[J]>A[J+1]
@@ -32,7 +20,14 @@
  005800          LA  10,0(8,9)
  005900          MVC 0(4,10),AIP1
  006000          B   SORTST2
- 006100 ENDSORT   B PRTODIS  PRINT SORTED ARRAY
+ 006100 ENDSORT  WTO 'SORTED ARRAY' PRINT SORTED ARRAY
+ 006101 *******************************
+ 006102            LA  13,SAVEA
+ 006103            LA  1,PARAMLST
+ 006104            L   15,PRTADDR
+ 006105            BALR 14,15
+ 006106 ******************************
+ 006110          B FEXCL
  006200 *********************
  006300 *ISKLYCHAEM POVTORENIYA
  006400 FEXCL    XR 8,8
@@ -40,4 +35,9 @@
  006600          MVC NEWLEN,LEN
  006700          LA 6,EXCLARR
  006800          LA 9,INARR
+ 007000          MP I,ZERO
+ 007100 FEXCLST1 LA 10,0(8,9)
+ 007200          CP I,LEN
+ 007300          BE FEND
+ 007400          AP I,ONE
    -DSLIST  *DSLIST
